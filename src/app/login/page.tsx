@@ -25,18 +25,28 @@ export default function LoginPage() {
     setError(null);
     setMessage(null);
 
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
+    try {
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
 
-    if (error) {
-      setError(error.message);
-    } else {
-      router.push('/dashboard');
-      router.refresh();
+      if (error) {
+        setError(error.message);
+      } else {
+        setMessage('Login successful! Redirecting...');
+        router.push('/dashboard');
+        router.refresh();
+      }
+    } catch (err: any) {
+      if (err.message === 'Failed to fetch' || err.message.includes('fetch')) {
+        setError('Verbindung zur Datenbank fehlgeschlagen. Bitte prüfe deine Supabase Keys in der .env.local Datei!');
+      } else {
+        setError(err.message || 'An unexpected error occurred.');
+      }
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   const handleSignUp = async (e: React.FormEvent) => {
@@ -45,20 +55,29 @@ export default function LoginPage() {
     setError(null);
     setMessage(null);
 
-    const { error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        emailRedirectTo: `${location.origin}/auth/callback`,
-      },
-    });
+    try {
+      const { error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          emailRedirectTo: `${location.origin}/auth/callback`,
+        },
+      });
 
-    if (error) {
-      setError(error.message);
-    } else {
-      setMessage('Check your email for the confirmation link.');
+      if (error) {
+        setError(error.message);
+      } else {
+        setMessage('Check your email for the confirmation link.');
+      }
+    } catch (err: any) {
+      if (err.message === 'Failed to fetch' || err.message.includes('fetch')) {
+        setError('Verbindung zur Datenbank fehlgeschlagen. Bitte prüfe deine Supabase Keys in der .env.local Datei!');
+      } else {
+        setError(err.message || 'An unexpected error occurred.');
+      }
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   return (
