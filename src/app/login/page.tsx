@@ -25,6 +25,14 @@ export default function LoginPage() {
     setError(null);
     setMessage(null);
 
+    // Prevent network requests if DB is not configured
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
+    if (!supabaseUrl || supabaseUrl.includes('your_') || !supabaseUrl.startsWith('http')) {
+      setError('Verbindung zur Datenbank fehlgeschlagen. Bitte prüfe deine Supabase Keys in der .env.local Datei!');
+      setLoading(false);
+      return;
+    }
+
     try {
       const { error } = await supabase.auth.signInWithPassword({
         email,
@@ -39,11 +47,7 @@ export default function LoginPage() {
         router.refresh();
       }
     } catch (err: any) {
-      if (err.message === 'Failed to fetch' || err.message.includes('fetch')) {
-        setError('Verbindung zur Datenbank fehlgeschlagen. Bitte prüfe deine Supabase Keys in der .env.local Datei!');
-      } else {
-        setError(err.message || 'An unexpected error occurred.');
-      }
+      setError(err.message || 'An unexpected error occurred.');
     } finally {
       setLoading(false);
     }
@@ -54,6 +58,14 @@ export default function LoginPage() {
     setLoading(true);
     setError(null);
     setMessage(null);
+
+    // Prevent network requests if DB is not configured
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
+    if (!supabaseUrl || supabaseUrl.includes('your_') || !supabaseUrl.startsWith('http')) {
+      setError('Verbindung zur Datenbank fehlgeschlagen. Bitte prüfe deine Supabase Keys in der .env.local Datei!');
+      setLoading(false);
+      return;
+    }
 
     try {
       const { error } = await supabase.auth.signUp({
@@ -70,11 +82,7 @@ export default function LoginPage() {
         setMessage('Check your email for the confirmation link.');
       }
     } catch (err: any) {
-      if (err.message === 'Failed to fetch' || err.message.includes('fetch')) {
-        setError('Verbindung zur Datenbank fehlgeschlagen. Bitte prüfe deine Supabase Keys in der .env.local Datei!');
-      } else {
-        setError(err.message || 'An unexpected error occurred.');
-      }
+      setError(err.message || 'An unexpected error occurred.');
     } finally {
       setLoading(false);
     }
