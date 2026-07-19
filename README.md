@@ -1,36 +1,66 @@
-# Aetros - Zero-Error SaaS Boilerplate
+<div align="center">
+  <img src="public/header.png" alt="Aetros Header" width="100%" />
+  
+  <br />
+  <br />
 
-![Aetros Header](public/header.png)
+  # 🚀 Aetros - Zero-Error SaaS Boilerplate
+  
+  **Die ultimative Grundlage für dein nächstes SaaS-Imperium.**
+  
+</div>
 
-Aetros is a modern, absolutely robust SaaS Boilerplate built for the Next.js App Router. It includes integrated authentication and database using Supabase, styling with TailwindCSS & Shadcn, and robust subscription payments via Stripe.
+---
 
-## Tech Stack
+## 🌟 Was ist Aetros?
 
-- **Next.js** (App Router, TypeScript)
-- **TailwindCSS** + **Shadcn/ui**
-- **Supabase** (Auth, PostgreSQL)
-- **Stripe** (Checkout, Subscriptions, Webhooks)
+**Aetros** ist eine extrem robuste und vollständig konfigurierte **Next.js Boilerplate**. Sie nimmt dir tagelange Arbeit ab, indem sie die komplexe Architektur für Authentifizierung, Zahlungsabwicklung und Datenbank-Management out-of-the-box mitbringt. 
 
-## Getting Started
+Wenn du ein Software-as-a-Service (SaaS) Produkt aufbauen möchtest, liefert dir Aetros das perfekte, fehlerfreie Fundament. Alles ist typisiert, abgesichert und im modernen Dark-Mode designt.
 
-1. Clone the repository.
-2. Run `npm install`.
-3. Copy `.env.example` to `.env.local` and add your Supabase & Stripe keys.
-4. Run `npm run dev` to start the development server.
+### 🛠️ Eingebaute Features:
+- 🔐 **Authentifizierung & Datenbank:** Fertiges Setup mit Supabase (PostgreSQL).
+- 💳 **Monetarisierung:** Komplette Stripe-Integration inkl. Webhooks & Kundenportal.
+- 🎨 **Premium UI:** Wunderschönes Design dank TailwindCSS und Shadcn/ui.
+- ⚙️ **Nutzer-Dashboard:** Ein fertiges Dashboard, wo Nutzer direkt ihre Profil-Einstellungen anpassen können.
 
-## Antigravity Quick-Customization
+---
 
-This boilerplate is designed to be fully extensible with the help of the AI assistant **Antigravity**. If you purchased or cloned this repository, you can simply run these prompts in your Antigravity IDE plugin to customize your SaaS quickly:
+## 💻 Tech Stack
 
-### 1. "Füge ein neues Feature hinzu..."
-> "Füge eine neue geschützte Seite unter `/dashboard/settings` hinzu. Integriere ein Shadcn-Formular zur Aktualisierung des Nutzernamens und binde es an die Supabase `profiles` Tabelle. Achte auf Error-Handling."
+- ⚡ **Next.js** (App Router, TypeScript)
+- 🎨 **TailwindCSS** + **Shadcn/ui**
+- 🗄️ **Supabase** (Auth, PostgreSQL, Row-Level-Security)
+- 💰 **Stripe** (Checkout Sessions, Subscriptions, Webhooks)
 
-### 2. "Ändere das Stripe-Preismodell..."
-> "Ersetze das aktuelle Pricing-Modell durch zwei neue Pläne: 'Hobby' für 9$/Monat und 'Pro' für 29$/Monat. Aktualisiere die Pricing-Table in `app/page.tsx` und erstelle neue Stripe-Preis-IDs. Zeige mir, wo ich diese in der `.env.local` aktualisieren muss."
+---
 
-### 3. "Passe das Design an..."
-> "Ändere das primäre Farbschema von den aktuellen Dark-Mode-Tönen zu einem lebendigen 'Neon-Cyberpunk' Stil. Aktualisiere die `globals.css` Variablen für `--primary` und `--background`, und füge subtile Hover-Glow-Effekte an allen Buttons hinzu."
+## 🚦 Schnellstart (Getting Started)
 
-## License
+Dank der mitgelieferten Skripte ist die Installation ein Kinderspiel:
 
-This project is licensed under the MIT License.
+1. **Repository klonen**
+2. **Setup ausführen:** Führe einfach einen Doppelklick auf die `setup.bat` aus. Das Skript installiert alle NPM-Abhängigkeiten in einem wunderschönen Regenbogen-Terminal.
+3. **API Keys eintragen:** Öffne die generierte `.env.local` Datei und füge deine Supabase & Stripe Keys ein.
+4. **Server starten:** Führe einen Doppelklick auf `launch.bat` aus. Das Skript sucht automatisch einen freien Port und startet den Server.
+
+---
+
+## 🤖 Antigravity Quick-Customization
+
+Diese Boilerplate wurde so entworfen, dass sie mithilfe des KI-Assistenten **Antigravity** blitzschnell erweitert werden kann. Nutze einfach einen der folgenden Prompts in deiner Antigravity IDE, um magische Änderungen vorzunehmen:
+
+### 1. ✨ "Füge ein neues Feature hinzu..."
+> *"Füge eine neue geschützte Seite unter `/dashboard/analytics` hinzu. Integriere ein Shadcn-Chart zur Visualisierung von Dummy-Daten und achte auf Error-Handling."*
+
+### 2. 💸 "Ändere das Stripe-Preismodell..."
+> *"Ersetze das aktuelle Pricing-Modell durch zwei neue Pläne: 'Hobby' für 9$/Monat und 'Pro' für 29$/Monat. Aktualisiere die Pricing-Table in `app/page.tsx` und erstelle neue Stripe-Preis-IDs."*
+
+### 3. 🖌️ "Passe das Design an..."
+> *"Ändere das primäre Farbschema von den aktuellen Dark-Mode-Tönen zu einem lebendigen 'Neon-Cyberpunk' Stil. Aktualisiere die `globals.css` Variablen für `--primary` und `--background`."*
+
+---
+
+## 📜 License
+
+Dieses Projekt ist lizenziert unter der **MIT License**. Copyright (c) 2026 Maximilian Holzer.
