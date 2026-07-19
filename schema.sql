@@ -4,6 +4,7 @@ CREATE TABLE public.profiles (
   email text NOT NULL,
   full_name text,
   avatar_url text,
+  requires_password_change boolean DEFAULT true,
   created_at timestamp with time zone DEFAULT timezone('utc'::text, now()) NOT NULL,
   CONSTRAINT profiles_pkey PRIMARY KEY (id)
 );

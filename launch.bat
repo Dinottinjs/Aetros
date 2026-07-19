@@ -20,6 +20,7 @@ echo Öffne Browser...
 start http://localhost:!PORT!
 
 echo Starte Server...
+node scripts/setup-admin.js
 call npm run dev -- -p !PORT!
 
 pause

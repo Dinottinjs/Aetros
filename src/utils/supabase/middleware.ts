@@ -31,6 +31,20 @@ export async function updateSession(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser()
 
+  if (user && request.nextUrl.pathname.startsWith('/dashboard')) {
+    const { data: profile } = await supabase
+      .from('profiles')
+      .select('requires_password_change')
+      .eq('id', user.id)
+      .single();
+    
+    if (profile?.requires_password_change && request.nextUrl.pathname !== '/dashboard/settings') {
+      const url = request.nextUrl.clone();
+      url.pathname = '/dashboard/settings';
+      return NextResponse.redirect(url);
+    }
+  }
+
   if (
     !user &&
     request.nextUrl.pathname.startsWith('/dashboard')
