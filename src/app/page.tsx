@@ -2,14 +2,11 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Zap, Shield, CreditCard, LayoutDashboard, CheckCircle2, Globe2, AlertCircle } from 'lucide-react';
+import { Zap, Shield, CreditCard, LayoutDashboard } from 'lucide-react';
 import { useLanguage } from '@/components/LanguageProvider';
-import { useState } from 'react';
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 
 export default function Home() {
   const { t, language, setLanguage } = useLanguage();
-  const [ibanModalOpen, setIbanModalOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-50 selection:bg-indigo-500/30">
@@ -68,20 +65,20 @@ export default function Home() {
             v0.2.0 Account-less Pipeline
           </div>
           <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-8 text-transparent bg-clip-text bg-gradient-to-br from-white via-slate-200 to-slate-500 animate-in fade-in slide-in-from-bottom-6 duration-700 delay-100">
-            Generate Content. Free & Account-less.
+            {t.heroTitle}
           </h1>
           <p className="text-xl text-slate-400 max-w-2xl mx-auto mb-12 animate-in fade-in slide-in-from-bottom-6 duration-700 delay-200">
-            Experience the full power of our generative AI tools directly in your browser. No sign-up required, no subscriptions.
+            {t.heroSubtitle}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-in fade-in slide-in-from-bottom-6 duration-700 delay-300">
             <Link href="/dashboard">
               <Button size="lg" className="h-12 px-8 text-lg bg-indigo-600 hover:bg-indigo-500 text-white hover:scale-105 active:scale-95 transition-all shadow-[0_0_20px_rgba(79,70,229,0.4)]">
-                Generate for free
+                {t.getStarted}
               </Button>
             </Link>
             <Link href="https://github.com/Dinottinjs/Aetros" target="_blank">
               <Button size="lg" variant="outline" className="h-12 px-8 text-lg border-white/10 bg-white/5 hover:bg-white/10 hover:text-white transition-all backdrop-blur-sm">
-                View GitHub
+                {t.viewGithub}
               </Button>
             </Link>
           </div>
@@ -90,23 +87,23 @@ export default function Home() {
         {/* Features */}
         <div className="max-w-7xl mx-auto px-4 py-24 border-t border-white/5 relative z-10 bg-slate-950/50 backdrop-blur-md">
           <h2 className="text-3xl font-bold text-center mb-16 text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400">
-            Why Account-less?
+            {t.featuresTitle}
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-indigo-500/50 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_10px_30px_-10px_rgba(79,70,229,0.3)] group">
               <Shield className="h-10 w-10 text-indigo-400 mb-4 group-hover:scale-110 transition-transform duration-500" />
-              <h3 className="text-xl font-semibold mb-2">Maximum Privacy</h3>
-              <p className="text-slate-400">Your data stays in your browser. We don't store your email or track your usage across sessions.</p>
+              <h3 className="text-xl font-semibold mb-2">{t.featureAuth}</h3>
+              <p className="text-slate-400">{t.featureAuthDesc}</p>
             </div>
             <div className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-purple-500/50 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_10px_30px_-10px_rgba(168,85,247,0.3)] group">
               <CreditCard className="h-10 w-10 text-purple-400 mb-4 group-hover:scale-110 transition-transform duration-500" />
-              <h3 className="text-xl font-semibold mb-2">100% Free</h3>
-              <p className="text-slate-400">No credit card required. Generate content without worrying about hidden subscription fees.</p>
+              <h3 className="text-xl font-semibold mb-2">{t.featurePay}</h3>
+              <p className="text-slate-400">{t.featurePayDesc}</p>
             </div>
             <div className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-pink-500/50 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_10px_30px_-10px_rgba(236,72,153,0.3)] group">
               <LayoutDashboard className="h-10 w-10 text-pink-400 mb-4 group-hover:scale-110 transition-transform duration-500" />
-              <h3 className="text-xl font-semibold mb-2">Instant Access</h3>
-              <p className="text-slate-400">Jump straight into the workspace. Eliminate friction and start creating in seconds.</p>
+              <h3 className="text-xl font-semibold mb-2">{t.featureUI}</h3>
+              <p className="text-slate-400">{t.featureUIDesc}</p>
             </div>
           </div>
         </div>
@@ -114,50 +111,15 @@ export default function Home() {
         {/* CTA */}
         <div className="max-w-5xl mx-auto px-4 py-24 relative z-10 text-center">
           <h2 className="text-3xl font-bold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400">
-            Ready to build?
+            {t.ctaTitle}
           </h2>
           <Link href="/dashboard">
             <Button size="lg" className="h-12 px-12 text-lg bg-white text-slate-950 hover:bg-slate-200 transition-all">
-              Launch Workspace
+              {t.ctaLaunch}
             </Button>
           </Link>
         </div>
       </main>
-
-      {/* IBAN Dialog */}
-      <Dialog open={ibanModalOpen} onOpenChange={setIbanModalOpen}>
-        <DialogContent className="bg-slate-900 border-slate-800 text-slate-50 sm:max-w-md backdrop-blur-xl">
-          <DialogHeader>
-            <DialogTitle className="flex items-center gap-2 text-xl">
-              <Globe2 className="h-5 w-5 text-indigo-500" />
-              {t.bankDialogTitle}
-            </DialogTitle>
-            <DialogDescription className="text-slate-400 pt-2">
-              {t.bankDialogDesc}
-            </DialogDescription>
-          </DialogHeader>
-          <div className="space-y-4 py-4">
-            <div className="p-4 bg-slate-950 rounded-lg border border-white/5 flex flex-col gap-1">
-              <span className="text-xs text-slate-500 font-medium uppercase tracking-wider">{t.bankAccountHolder}</span>
-              <span className="text-lg font-semibold text-white">{t.bankAccountName}</span>
-            </div>
-            <div className="p-4 bg-indigo-950/30 rounded-lg border border-indigo-500/30 flex flex-col gap-1 relative group cursor-copy" onClick={() => navigator.clipboard.writeText(t.bankIbanValue)}>
-              <span className="text-xs text-indigo-400 font-medium uppercase tracking-wider">{t.bankIbanLabel}</span>
-              <span className="text-xl font-mono text-white tracking-widest">{t.bankIbanValue}</span>
-              <div className="absolute inset-0 bg-indigo-600/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-lg">
-                <span className="bg-indigo-600 text-white text-xs px-2 py-1 rounded">Copy</span>
-              </div>
-            </div>
-            <div className="flex items-start gap-2 text-sm text-amber-500/80 bg-amber-500/10 p-3 rounded-lg border border-amber-500/20">
-              <AlertCircle className="h-5 w-5 shrink-0" />
-              <p>Please include your registered email address in the transfer purpose field.</p>
-            </div>
-          </div>
-          <Button onClick={() => setIbanModalOpen(false)} className="w-full bg-slate-800 hover:bg-slate-700 text-white">
-            {t.bankClose}
-          </Button>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 }
