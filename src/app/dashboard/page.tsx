@@ -26,13 +26,10 @@ export default async function DashboardPage() {
     .single();
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-50 p-6 md:p-12">
+    <div className="p-6 md:p-12">
       <div className="max-w-4xl mx-auto space-y-8">
         <div className="flex justify-between items-center">
-          <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
-          <Link href="/">
-            <Button variant="outline" className="border-slate-800 text-slate-300 hover:text-white">Back to Home</Button>
-          </Link>
+          <h1 className="text-3xl font-bold tracking-tight">Overview</h1>
         </div>
         
         <div className="grid md:grid-cols-2 gap-6">
