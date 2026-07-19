@@ -2,7 +2,7 @@
 setlocal EnableDelayedExpansion
 
 :: Enable ANSI Colors in Windows CMD
-for /F "tokens=1,2 delims=#" %%a in ('"prompt #$H#$E# & echo on & for %%b in (1) do rem"') do set ESC=%%b
+for /f "delims=" %%a in ('powershell -noprofile -command "[char]27"') do set ESC=%%a
 
 :: Rainbow Colors
 set C1=%ESC%[31m
@@ -35,7 +35,7 @@ echo %C2%[+] Generiere uninstall.bat...%RESET%
 (
 echo @echo off
 echo setlocal EnableDelayedExpansion
-echo for /F "tokens=1,2 delims=#" %%%%a in ^('"prompt #$H#$E# & echo on & for %%%%b in ^(1^) do rem"'^) do set ESC=%%%%b
+echo for /f "delims=" %%%%a in ^('powershell -noprofile -command "[char]27"'^) do set ESC=%%%%a
 echo set C1=%%ESC%%[31m
 echo set RESET=%%ESC%%[0m
 echo echo %%C1%%====================================================%%RESET%%
