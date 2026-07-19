@@ -6,8 +6,11 @@ export async function updateSession(request: NextRequest) {
     request,
   })
 
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
+  const safeUrl = supabaseUrl.startsWith('http') ? supabaseUrl : 'http://localhost';
+
   const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL || 'http://localhost',
+    safeUrl,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'dummy_key',
     {
       cookies: {

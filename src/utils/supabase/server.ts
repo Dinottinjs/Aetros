@@ -3,9 +3,11 @@ import { cookies } from 'next/headers'
 
 export async function createClient() {
   const cookieStore = await cookies()
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
+  const safeUrl = supabaseUrl.startsWith('http') ? supabaseUrl : 'http://localhost';
 
   return createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL || 'http://localhost',
+    safeUrl,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'dummy_key',
     {
       cookies: {
