@@ -48,14 +48,8 @@ export async function updateSession(request: NextRequest) {
     }
   }
 
-  if (
-    !user &&
-    request.nextUrl.pathname.startsWith('/dashboard')
-  ) {
-    const url = request.nextUrl.clone()
-    url.pathname = '/'
-    return NextResponse.redirect(url)
-  }
+  // We removed the strict login requirement for /dashboard to allow the Account-less Guest Mode pipeline.
+  // We only redirect to settings if a logged in admin user needs to change their password.
 
   return supabaseResponse
 }

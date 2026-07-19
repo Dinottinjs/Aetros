@@ -39,14 +39,14 @@ export default function Home() {
               </button>
             </div>
             
-            <Link href="/login">
+            <Link href="/setup">
               <Button variant="ghost" className="text-slate-300 hover:text-white hover:bg-white/5 transition-colors">
-                Login
+                Setup
               </Button>
             </Link>
             <Link href="/dashboard">
               <Button className="bg-indigo-600 hover:bg-indigo-500 hover:scale-105 active:scale-95 transition-all shadow-[0_0_15px_rgba(79,70,229,0.3)] text-white">
-                Dashboard
+                Workspace
               </Button>
             </Link>
           </div>
@@ -65,23 +65,23 @@ export default function Home() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
             </span>
-            v0.1.0 Released
+            v0.2.0 Account-less Pipeline
           </div>
           <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-8 text-transparent bg-clip-text bg-gradient-to-br from-white via-slate-200 to-slate-500 animate-in fade-in slide-in-from-bottom-6 duration-700 delay-100">
-            {t.heroTitle}
+            Generate Content. Free & Account-less.
           </h1>
           <p className="text-xl text-slate-400 max-w-2xl mx-auto mb-12 animate-in fade-in slide-in-from-bottom-6 duration-700 delay-200">
-            {t.heroSubtitle}
+            Experience the full power of our generative AI tools directly in your browser. No sign-up required, no subscriptions.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-in fade-in slide-in-from-bottom-6 duration-700 delay-300">
-            <Link href="/login">
+            <Link href="/dashboard">
               <Button size="lg" className="h-12 px-8 text-lg bg-indigo-600 hover:bg-indigo-500 text-white hover:scale-105 active:scale-95 transition-all shadow-[0_0_20px_rgba(79,70,229,0.4)]">
-                {t.getStarted}
+                Generate for free
               </Button>
             </Link>
             <Link href="https://github.com/Dinottinjs/Aetros" target="_blank">
               <Button size="lg" variant="outline" className="h-12 px-8 text-lg border-white/10 bg-white/5 hover:bg-white/10 hover:text-white transition-all backdrop-blur-sm">
-                {t.viewGithub}
+                View GitHub
               </Button>
             </Link>
           </div>
@@ -90,88 +90,37 @@ export default function Home() {
         {/* Features */}
         <div className="max-w-7xl mx-auto px-4 py-24 border-t border-white/5 relative z-10 bg-slate-950/50 backdrop-blur-md">
           <h2 className="text-3xl font-bold text-center mb-16 text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400">
-            {t.featuresTitle}
+            Why Account-less?
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-indigo-500/50 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_10px_30px_-10px_rgba(79,70,229,0.3)] group">
               <Shield className="h-10 w-10 text-indigo-400 mb-4 group-hover:scale-110 transition-transform duration-500" />
-              <h3 className="text-xl font-semibold mb-2">{t.featureAuth}</h3>
-              <p className="text-slate-400">{t.featureAuthDesc}</p>
+              <h3 className="text-xl font-semibold mb-2">Maximum Privacy</h3>
+              <p className="text-slate-400">Your data stays in your browser. We don't store your email or track your usage across sessions.</p>
             </div>
             <div className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-purple-500/50 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_10px_30px_-10px_rgba(168,85,247,0.3)] group">
               <CreditCard className="h-10 w-10 text-purple-400 mb-4 group-hover:scale-110 transition-transform duration-500" />
-              <h3 className="text-xl font-semibold mb-2">{t.featurePay}</h3>
-              <p className="text-slate-400">{t.featurePayDesc}</p>
+              <h3 className="text-xl font-semibold mb-2">100% Free</h3>
+              <p className="text-slate-400">No credit card required. Generate content without worrying about hidden subscription fees.</p>
             </div>
             <div className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-pink-500/50 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_10px_30px_-10px_rgba(236,72,153,0.3)] group">
               <LayoutDashboard className="h-10 w-10 text-pink-400 mb-4 group-hover:scale-110 transition-transform duration-500" />
-              <h3 className="text-xl font-semibold mb-2">{t.featureUI}</h3>
-              <p className="text-slate-400">{t.featureUIDesc}</p>
+              <h3 className="text-xl font-semibold mb-2">Instant Access</h3>
+              <p className="text-slate-400">Jump straight into the workspace. Eliminate friction and start creating in seconds.</p>
             </div>
           </div>
         </div>
 
-        {/* Pricing */}
-        <div className="max-w-5xl mx-auto px-4 py-24 relative z-10">
-          <h2 className="text-3xl font-bold text-center mb-16 text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400">
-            {t.pricingTitle}
+        {/* CTA */}
+        <div className="max-w-5xl mx-auto px-4 py-24 relative z-10 text-center">
+          <h2 className="text-3xl font-bold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400">
+            Ready to build?
           </h2>
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {/* Starter Plan */}
-            <div className="p-8 rounded-3xl bg-slate-900/50 border border-white/10 backdrop-blur-sm">
-              <h3 className="text-2xl font-semibold mb-2">{t.priceStarter}</h3>
-              <div className="text-4xl font-bold mb-6">$9<span className="text-lg text-slate-500 font-normal">/mo</span></div>
-              <ul className="space-y-4 mb-8">
-                <li className="flex items-center gap-3 text-slate-300">
-                  <CheckCircle2 className="h-5 w-5 text-indigo-500" /> 100 Users
-                </li>
-                <li className="flex items-center gap-3 text-slate-300">
-                  <CheckCircle2 className="h-5 w-5 text-indigo-500" /> Basic Support
-                </li>
-              </ul>
-              <form action="/api/stripe/checkout" method="POST">
-                <input type="hidden" name="priceId" value="price_1Hh1" />
-                <Button type="submit" className="w-full bg-white/10 hover:bg-white/20 text-white border border-white/10 transition-all">
-                  {t.subscribe}
-                </Button>
-              </form>
-            </div>
-
-            {/* Pro Plan */}
-            <div className="p-8 rounded-3xl bg-gradient-to-b from-indigo-900/40 to-slate-900/50 border border-indigo-500/30 backdrop-blur-sm relative shadow-[0_0_40px_-10px_rgba(79,70,229,0.3)] hover:shadow-[0_0_60px_-10px_rgba(79,70,229,0.4)] transition-all duration-500">
-              <div className="absolute top-0 right-8 -translate-y-1/2 px-3 py-1 bg-indigo-600 text-xs font-semibold rounded-full text-white shadow-[0_0_10px_rgba(79,70,229,0.5)]">
-                RECOMMENDED
-              </div>
-              <h3 className="text-2xl font-semibold mb-2">{t.pricePro}</h3>
-              <div className="text-4xl font-bold mb-6">$29<span className="text-lg text-slate-500 font-normal">/mo</span></div>
-              <ul className="space-y-4 mb-8">
-                <li className="flex items-center gap-3 text-slate-300">
-                  <CheckCircle2 className="h-5 w-5 text-indigo-400" /> Unlimited Users
-                </li>
-                <li className="flex items-center gap-3 text-slate-300">
-                  <CheckCircle2 className="h-5 w-5 text-indigo-400" /> Priority Support
-                </li>
-                <li className="flex items-center gap-3 text-slate-300">
-                  <CheckCircle2 className="h-5 w-5 text-indigo-400" /> Custom Analytics
-                </li>
-              </ul>
-              <div className="space-y-3">
-                <form action="/api/stripe/checkout" method="POST">
-                  <input type="hidden" name="priceId" value="price_1Hh2" />
-                  <Button type="submit" className="w-full bg-indigo-600 hover:bg-indigo-500 text-white shadow-[0_0_15px_rgba(79,70,229,0.4)] hover:scale-[1.02] active:scale-95 transition-all">
-                    {t.subscribe}
-                  </Button>
-                </form>
-                <Button 
-                  variant="outline" 
-                  onClick={() => setIbanModalOpen(true)}
-                  className="w-full border-indigo-500/30 bg-indigo-500/10 hover:bg-indigo-500/20 text-indigo-300 transition-all"
-                >
-                  {t.subscribeBank}
-                </Button>
-              </div>
-            </div>
-          </div>
+          <Link href="/dashboard">
+            <Button size="lg" className="h-12 px-12 text-lg bg-white text-slate-950 hover:bg-slate-200 transition-all">
+              Launch Workspace
+            </Button>
+          </Link>
         </div>
       </main>
 

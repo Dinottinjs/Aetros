@@ -20,13 +20,7 @@ export default function DashboardLayout({
           <Link href="/dashboard" className="flex-1">
             <Button variant="ghost" className="w-full justify-start text-slate-300 hover:text-white hover:bg-slate-900">
               <Home className="mr-2 h-4 w-4" />
-              Overview
-            </Button>
-          </Link>
-          <Link href="/dashboard/settings" className="flex-1">
-            <Button variant="ghost" className="w-full justify-start text-slate-300 hover:text-white hover:bg-slate-900">
-              <Settings className="mr-2 h-4 w-4" />
-              Settings
+              Workspace
             </Button>
           </Link>
         </nav>
