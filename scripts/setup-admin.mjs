@@ -18,7 +18,7 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
 if (!supabaseUrl || !supabaseServiceKey) {
-  console.error('⚠️ Supabase credentials missing. Admin account could not be created automatically.');
+  console.log('⚠️ HINWEIS: Bitte trage deine Supabase Keys in die .env.local Datei ein, damit der Admin-Account erstellt werden kann.');
   process.exit(0); // Exit without error to not block the launch script
 }
 
