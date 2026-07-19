@@ -1,66 +1,93 @@
-<div align="center">
-  <img src="public/header.png" alt="Aetros Header" width="100%" />
-  
-  <br />
-  <br />
+# 🚀 Aetros – Die ultimative Zero-Error SaaS Boilerplate 💻
 
-  # 🚀 Aetros - Zero-Error SaaS Boilerplate
-  
-  **Die ultimative Grundlage für dein nächstes SaaS-Imperium.**
-  
-</div>
+[![Next.js](https://img.shields.io/badge/Next.js-15-black.svg)](https://nextjs.org/)
+[![TypeScript Version](https://img.shields.io/badge/TypeScript-5.x-blue.svg)](https://www.typescriptlang.org/)
+[![License](https://img.shields.io/badge/Lizenz-MIT-green.svg)](LICENSE)
+[![Platform](https://img.shields.io/badge/Plattform-Windows%20%7C%20Linux%20%7C%20macOS-orange.svg)](#)
+
+**Aetros** ist ein hochmodernes, ausfallsicheres Software-as-a-Service (SaaS) Boilerplate-System. Es bündelt eine fehlerfreie Next.js Architektur mit einer strikten Typisierung, einem wunderschönen Dark-Mode-Design (Shadcn/ui), einer vollständigen Benutzer- und Datenbankverwaltung via Supabase sowie einer nahtlosen und robusten Stripe-Integration für Zahlungen.
 
 ---
 
-## 🌟 Was ist Aetros?
+## 🌟 Hauptfeatures im Überblick
 
-**Aetros** ist eine extrem robuste und vollständig konfigurierte **Next.js Boilerplate**. Sie nimmt dir tagelange Arbeit ab, indem sie die komplexe Architektur für Authentifizierung, Zahlungsabwicklung und Datenbank-Management out-of-the-box mitbringt. 
+### 🖥️ Premium UI & Conversion Landingpage
+* **Modernes Design:** Perfekt optimiert für maximale Conversion, inklusive Hero-Section und Pricing-Table.
+* **Shadcn & TailwindCSS:** Vollständig anpassbare Komponenten in einem durchdachten Dark-Mode Layout.
 
-Wenn du ein Software-as-a-Service (SaaS) Produkt aufbauen möchtest, liefert dir Aetros das perfekte, fehlerfreie Fundament. Alles ist typisiert, abgesichert und im modernen Dark-Mode designt.
+### 💳 Stripe Zahlungsabwicklung & Monetarisierung
+* **Abo-Verwaltung:** Checkout Sessions für "Starter", "Pro" und "Enterprise" Pläne.
+* **100% Robuster Webhook:** Fehlerfreie Synchronisation von Abonnements, Kündigungen und Updates direkt in die Datenbank, abgesichert gegen Replay-Angriffe.
+* **Customer Portal:** Direkter Link zum Stripe Billing Portal für Nutzer.
 
-### 🛠️ Eingebaute Features:
-- 🔐 **Authentifizierung & Datenbank:** Fertiges Setup mit Supabase (PostgreSQL).
-- 💳 **Monetarisierung:** Komplette Stripe-Integration inkl. Webhooks & Kundenportal.
-- 🎨 **Premium UI:** Wunderschönes Design dank TailwindCSS und Shadcn/ui.
-- ⚙️ **Nutzer-Dashboard:** Ein fertiges Dashboard, wo Nutzer direkt ihre Profil-Einstellungen anpassen können.
-
----
-
-## 💻 Tech Stack
-
-- ⚡ **Next.js** (App Router, TypeScript)
-- 🎨 **TailwindCSS** + **Shadcn/ui**
-- 🗄️ **Supabase** (Auth, PostgreSQL, Row-Level-Security)
-- 💰 **Stripe** (Checkout Sessions, Subscriptions, Webhooks)
+### 👥 Datenbank- & Rechtesystem (Supabase)
+* **Integrierte Benutzerverwaltung:** Registrierung und Anmeldung mit nahtloser Session-Verwaltung in einer Next.js Middleware.
+* **Nutzer-Dashboard:** Ein eigenes Control-Panel für Endnutzer zum Verwalten von Profil-Daten (Name, Avatar) und Abonnement-Status.
+* **Row-Level-Security (RLS):** Sämtliche Datenbank-Abfragen sind durch strenge Supabase RLS Policies abgesichert.
 
 ---
 
-## 🚦 Schnellstart (Getting Started)
+## 🛠️ Systemarchitektur
 
-Dank der mitgelieferten Skripte ist die Installation ein Kinderspiel:
+```
+                                  +-----------------------+
+                                  |     Browser-Client    |
+                                  |  (React Server Comp.) |
+                                  +-----------+-----------+
+                                              | HTTP / Auth Cookies
+                                              v
++-----------------------------------------------------------------------------------------+
+|                                         AETROS                                          |
+|                                                                                         |
+|   +-----------------------+   +-----------------------+   +-------------------------+   |
+|   |    Next.js App-Router |   |  Tailwind / Shadcn UI |   |  Stripe Checkout API    |   |
+|   |    (Middleware)       |   |  (Frontend Design)    |   |  (/api/stripe/checkout) |   |
+|   +-----------------------+   +-----------+-----------+   +-------------------------+   |
+|                                           |                                             |
++-------------------------------------------|---------------------------------------------+
+                                            |
+                         +------------------+-------------------+
+                         |                                      |
+                         v                                      v
+            +--------------------------+           +--------------------------+
+            |      Supabase (DB)       |           |          Stripe          |
+            | - profiles Tabelle       | <-------- | - Webhooks (Sync)        |
+            | - subscriptions Tabelle  |           | - Zahlungsabwicklung     |
+            +--------------------------+           +--------------------------+
+```
 
-1. **Repository klonen**
-2. **Setup ausführen:** Führe einfach einen Doppelklick auf die `setup.bat` aus. Das Skript installiert alle NPM-Abhängigkeiten in einem wunderschönen Regenbogen-Terminal.
-3. **API Keys eintragen:** Öffne die generierte `.env.local` Datei und füge deine Supabase & Stripe Keys ein.
-4. **Server starten:** Führe einen Doppelklick auf `launch.bat` aus. Das Skript sucht automatisch einen freien Port und startet den Server.
+---
+
+## ⚙️ Installation & Autostart
+
+Aetros wird mit speziellen Installationsskripten geliefert, die den kompletten Start vereinfachen.
+
+### 🪟 Installation & Setup
+1. Lade dir das Repository herunter und entpacke es.
+2. Führe die Datei `setup.bat` mit einem Doppelklick aus.
+3. Das Skript installiert alle Node.js-Abhängigkeiten (`npm install`) in einer farbenfrohen Konsole und erstellt automatisch deine `.env.local` Datei sowie ein Deinstallationsskript.
+4. **WICHTIG:** Trage in der erstellten `.env.local` deine Supabase- und Stripe-Keys ein!
+5. Führe die Datei `launch.bat` aus. Das Skript sucht automatisch einen freien Port (ab `3000`) und startet den Server ohne Port-Konflikte.
 
 ---
 
 ## 🤖 Antigravity Quick-Customization
 
-Diese Boilerplate wurde so entworfen, dass sie mithilfe des KI-Assistenten **Antigravity** blitzschnell erweitert werden kann. Nutze einfach einen der folgenden Prompts in deiner Antigravity IDE, um magische Änderungen vorzunehmen:
-
-### 1. ✨ "Füge ein neues Feature hinzu..."
-> *"Füge eine neue geschützte Seite unter `/dashboard/analytics` hinzu. Integriere ein Shadcn-Chart zur Visualisierung von Dummy-Daten und achte auf Error-Handling."*
-
-### 2. 💸 "Ändere das Stripe-Preismodell..."
-> *"Ersetze das aktuelle Pricing-Modell durch zwei neue Pläne: 'Hobby' für 9$/Monat und 'Pro' für 29$/Monat. Aktualisiere die Pricing-Table in `app/page.tsx` und erstelle neue Stripe-Preis-IDs."*
-
-### 3. 🖌️ "Passe das Design an..."
-> *"Ändere das primäre Farbschema von den aktuellen Dark-Mode-Tönen zu einem lebendigen 'Neon-Cyberpunk' Stil. Aktualisiere die `globals.css` Variablen für `--primary` und `--background`."*
+Diese Boilerplate ist dafür konzipiert, mit dem KI-Assistenten **Antigravity** erweitert zu werden:
+* **Neues Feature:** *"Füge eine neue geschützte Seite unter `/dashboard/analytics` hinzu. Integriere ein Shadcn-Chart."*
+* **Stripe anpassen:** *"Ersetze das aktuelle Pricing-Modell durch 'Hobby' für 9$/Monat. Aktualisiere die Pricing-Table."*
+* **Design ändern:** *"Ändere das Farbschema zu einem lebendigen 'Neon-Cyberpunk' Stil in der globals.css."*
 
 ---
 
-## 📜 License
+## 🧹 Rückstandslose Deinstallation
 
-Dieses Projekt ist lizenziert unter der **MIT License**. Copyright (c) 2026 Maximilian Holzer.
+Sollte das Projekt entfernt werden müssen, sorgt das generierte Deinstallationsskript dafür, dass das System aufgeräumt wird:
+
+* **Unter Windows:** Führe die Datei `uninstall.bat` aus. Sie löscht den kompletten `node_modules`-Ordner sowie den `.next` Build-Ordner sicher und zuverlässig.
+
+---
+
+## 📝 Lizenz & Rechtliches
+
+Dieses Projekt ist unter der MIT-Lizenz lizenziert. Copyright (c) 2026 Maximilian Holzer. Siehe die `LICENSE` Datei für Details.
