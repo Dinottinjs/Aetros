@@ -4,7 +4,17 @@ import { createClient } from '@/utils/supabase/server';
 
 export async function POST(req: Request) {
   try {
-    const { priceId } = await req.json();
+    // Parse form data since it's submitted via HTML form action
+    let priceId = '';
+    const contentType = req.headers.get('content-type') || '';
+    
+    if (contentType.includes('application/x-www-form-urlencoded') || contentType.includes('multipart/form-data')) {
+      const formData = await req.formData();
+      priceId = formData.get('priceId') as string;
+    } else {
+      const body = await req.json();
+      priceId = body.priceId;
+    }
 
     if (!priceId) {
       return NextResponse.json({ error: 'Price ID is required' }, { status: 400 });
@@ -13,8 +23,9 @@ export async function POST(req: Request) {
     const supabase = await createClient();
     const { data: { user } } = await supabase.auth.getUser();
 
+    // If unauthorized, redirect to login instead of returning JSON
     if (!user) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+      return NextResponse.redirect(`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/login`, { status: 303 });
     }
 
     const { data: profile } = await supabase
@@ -26,7 +37,7 @@ export async function POST(req: Request) {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       billing_address_collection: 'required',
-      customer_email: profile?.email,
+      customer_email: profile?.email || user.email,
       line_items: [
         {
           price: priceId,
@@ -42,13 +53,18 @@ export async function POST(req: Request) {
       metadata: {
         user_id: user.id,
       },
-      success_url: `${process.env.NEXT_PUBLIC_APP_URL}/dashboard?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.NEXT_PUBLIC_APP_URL}/`,
+      success_url: `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/dashboard?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/`,
     });
 
-    return NextResponse.json({ sessionId: session.id, url: session.url });
+    if (session.url) {
+      return NextResponse.redirect(session.url, { status: 303 });
+    }
+    
+    return NextResponse.json({ error: 'Failed to create Stripe session' }, { status: 500 });
   } catch (err: any) {
     console.error('Stripe Checkout Error:', err);
-    return NextResponse.json({ error: err.message }, { status: 500 });
+    // Be careful not to leak internal errors
+    return NextResponse.json({ error: 'Internal Server Error during checkout' }, { status: 500 });
   }
 }
